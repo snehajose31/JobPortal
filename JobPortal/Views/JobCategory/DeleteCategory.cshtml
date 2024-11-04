@@ -1,0 +1,15 @@
+﻿@model JobPortal.Models.JobCategory
+
+@{
+    ViewBag.Title = "Delete Job Category";
+}
+
+<h2>Delete Job Category</h2>
+<p>Are you sure you want to delete the category '@Model.CategoryName'?</p>
+
+<form asp-action="DeleteCategoryConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="JobCategoryId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="ManageJobCategories" class="btn btn-secondary">Cancel</a>
+</form>

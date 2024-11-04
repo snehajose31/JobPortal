@@ -1,0 +1,123 @@
+﻿@model JobPortal.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Job Portal</title>
+    <style>
+        /* Reset and basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Centering the login form */
+        body1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+
+        /* Login container styling */
+        .login-container1 {
+            background-color: #fff;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+            input[type="text"]:focus,
+            input[type="password"]:focus {
+                outline: none;
+                border-color: #0066cc;
+            }
+
+        .validation-message {
+            color: red;
+            font-size: 12px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .login-button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+            .login-button:hover {
+                background-color: #005bb5;
+            }
+    </style>
+</head>
+<body1>
+    <div class="login-container1">
+        <h2>Login</h2>
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" type="text" />
+                <span asp-validation-for="Username" class="validation-message"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" />
+                <span asp-validation-for="Password" class="validation-message"></span>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <span class="error-message">@ViewBag.Error</span>
+            }
+        </form>
+    </div>
+</body1>
+</html>

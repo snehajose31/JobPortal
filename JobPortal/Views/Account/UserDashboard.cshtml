@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "User Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Job Portal</title>
+    <style>
+        /* Full-width header styling */
+        .header-box {
+            background-color: #003300;
+            color: white;
+            padding: 30px;
+            border-radius: 5px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            background-color: #004d00;
+            color: white;
+            width: 200px;
+            height: 100vh; /* Full viewport height */
+            position: fixed;
+            top: 70px; /* Adjusted for the fixed header */
+            left: 0;
+            padding-top: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button styling */
+        .sidebar-button {
+            margin-top: auto; /* Pushes the button to the bottom */
+            background-color: #006600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px; /* Adds spacing from the bottom of the sidebar */
+        }
+
+        .sidebar-button:hover {
+            background-color: #007700;
+        }
+
+        /* Username styling on the left side */
+        .username {
+            margin-left: 20px;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* Centered navigation menu in header */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content offset for header and sidebar */
+        .content {
+            margin-top: 70px; /* Offset for header */
+            margin-left: 220px; /* Offset for sidebar */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Full-width Header Section -->
+    <header class="header-box">
+        @{
+            var username = TempData["Username"] as string; // Use TempData to get username
+        }
+        @if (!string.IsNullOrEmpty(username))
+        {
+            <div class="username">Hello, @username!</div>
+        }
+
+        <h1>Job Portal</h1>
+
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("CreateProfile", "Account")">Profile</a></li>
+                <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sidebar Section -->
+    <aside class="sidebar">
+        <br />
+        <br />
+        <a href="@Url.Action("Dashboard", "Account")">Dashboard</a>
+        <a href="@Url.Action("Home","JobDetails")"> Jobs</a>
+        <a href="@Url.Action("Applications", "Job")">Applications</a>
+        <a href="@Url.Action("Settings", "Account")">Settings</a>
+
+        <!-- Button at the bottom of the sidebar -->
+        <button class="sidebar-button">New Job</button>
+    </aside>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <p>Welcome to your dashboard. Here you can manage your jobs and applications.</p>
+        
+        <!-- Add more dashboard features here -->
+    </main>
+</body>
+</html>

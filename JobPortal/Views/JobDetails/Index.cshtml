@@ -1,0 +1,52 @@
+﻿@model IEnumerable<JobPortal.Models.JobDetails>
+
+@{
+    ViewBag.Title = "Manage Job Details";
+}
+
+<h2>Manage Job Details</h2>
+
+<!-- Button to create a new job -->
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Job</a>
+
+<!-- Job Details Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Description</th>
+            <th>Salary</th>
+            <th>Company Name</th>
+            <th>Job Location</th>
+            <th>Requirements</th>
+            <th>Preferred Qualifications</th>
+            <th>Posted Date</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.JobTitle</td>
+                <td>@job.Description</td>
+                <td>@job.Salary.ToString("C")</td> <!-- Formats the salary as currency -->
+                <td>@job.CompanyName</td>
+                <td>@job.JobLocation</td>
+                <td>@job.Requirements</td>
+                <td>@job.PreferredQualifications</td>
+                <td>@job.PostedDate.ToShortDateString()</td>
+                <td>@(job.IsActive ? "Active" : "Inactive")</td>
+                <td>@job.JobCategory.CategoryName</td>
+                <td>
+                    <button class="btn btn-danger"
+                            onclick="if(confirm('Are you sure you want to delete this job?')) location.href='@Url.Action("Delete", "JobDetails", new { id = job.JobId })'">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

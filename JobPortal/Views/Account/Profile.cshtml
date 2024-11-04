@@ -1,0 +1,22 @@
+﻿@model JobPortal.Models.UserProfile
+
+<h2>User Profile</h2>
+<div>
+    <h3>Account Information</h3>
+    <p><strong>Username:</strong> @Model.User.Username</p>
+    <p><strong>Email:</strong> @Model.User.Email</p>
+    <p><strong>Phone:</strong> @Model.User.Phone</p>
+</div>
+
+<div>
+    <h3>Profile Details</h3>
+    <p><strong>Date of Birth:</strong> @Model.DateOfBirth.ToShortDateString()</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+    <p><strong>City:</strong> @Model.City</p>
+    <p><strong>Country:</strong> @Model.Country</p>
+    <p><strong>Highest Qualification:</strong> @Model.HighestQualification</p>
+    <p><strong>Graduation Year:</strong> @Model.GraduationYear</p>
+    <p><strong>Skills:</strong> @Model.Skills</p>
+</div>
+
+

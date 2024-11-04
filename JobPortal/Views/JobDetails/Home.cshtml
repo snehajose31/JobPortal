@@ -1,0 +1,136 @@
+﻿@model IEnumerable<JobPortal.Models.JobDetails>
+
+@{
+    ViewBag.Title = "Job Listings";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    /* Container styling with a grid layout */
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+        gap: 20px;
+        padding: 50px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* Individual job box styling */
+    .job-box {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Hover effect on job box */
+    .job-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image styling to ensure it fits within job box */
+    .job-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Job details styling */
+    .job-details {
+        padding: 20px;
+        width: 100%;
+    }
+
+    /* Job title styling */
+    .job-details h3 {
+        margin: 15px 0;
+        font-size: 22px;
+        color: #333;
+    }
+
+    /* General text styling in job details */
+    .job-details p {
+        color: #666;
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    /* Salary text styling */
+    .job-salary {
+        font-size: 24px;
+        color: #e67e22;
+        margin: 15px 0;
+    }
+
+    /* Apply button styling */
+    .apply-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #e67e22;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    /* Apply button hover effect */
+    .apply-btn:hover {
+        background-color: #d35400;
+    }
+
+    /* Responsive adjustments */
+    media screen and (max-width: 1024px) {
+        .container {
+            padding: 20px;
+        }
+    }
+
+    media screen and (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr; /* Single column on smaller screens */
+            padding: 10px;
+        }
+    }
+</style>
+
+<h1>Job Listings</h1>
+
+<div class="container">
+    @foreach (var job in Model)
+    {
+        <div class="job-box">
+            <div class="job-details">
+                <h3>@job.JobTitle</h3>
+                <p><strong>Company:</strong> @job.CompanyName</p>
+                <p><strong>Location:</strong> @job.JobLocation</p>
+                <p><strong>Requirements:</strong> @job.Requirements</p>
+                <p><strong>Preferred Qualifications:</strong> @job.PreferredQualifications</p>
+                <p><strong>Posted Date:</strong> @job.PostedDate.ToShortDateString()</p>
+                <p><strong>Status:</strong> @(job.IsActive ? "Active" : "Inactive")</p>
+                <p class="job-salary">Salary: @job.Salary.ToString("C")</p>
+                <a href="@Url.Action("Apply", "Job", new { id = job.JobId })" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+    }
+</div>

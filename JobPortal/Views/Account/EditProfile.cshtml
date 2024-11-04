@@ -1,0 +1,60 @@
+﻿@model JobPortal.Models.UserProfile
+
+<h2>Edit Profile</h2>
+<form asp-action="EditProfile" method="post">
+    <div>
+        <label asp-for="User.Email"></label>
+        <input asp-for="User.Email" />
+        <span asp-validation-for="User.Email"></span>
+    </div>
+
+    <div>
+        <label asp-for="User.Phone"></label>
+        <input asp-for="User.Phone" />
+        <span asp-validation-for="User.Phone"></span>
+    </div>
+
+    <div>
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" type="date" />
+        <span asp-validation-for="DateOfBirth"></span>
+    </div>
+
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" />
+        <span asp-validation-for="Address"></span>
+    </div>
+
+    <div>
+        <label asp-for="City"></label>
+        <input asp-for="City" />
+        <span asp-validation-for="City"></span>
+    </div>
+
+    <div>
+        <label asp-for="Country"></label>
+        <input asp-for="Country" />
+        <span asp-validation-for="Country"></span>
+    </div>
+
+    <div>
+        <label asp-for="HighestQualification"></label>
+        <input asp-for="HighestQualification" />
+        <span asp-validation-for="HighestQualification"></span>
+    </div>
+
+    <div>
+        <label asp-for="GraduationYear"></label>
+        <input asp-for="GraduationYear" type="number" />
+        <span asp-validation-for="GraduationYear"></span>
+    </div>
+
+    <div>
+        <label asp-for="Skills"></label>
+        <input asp-for="Skills" />
+        <span asp-validation-for="Skills"></span>
+    </div>
+
+    <button type="submit">Save Changes</button>
+</form>
